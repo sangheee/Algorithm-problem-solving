@@ -7,14 +7,13 @@ public class ReverseLinkedList {
 	}
 
 	public ListNode reverseList(ListNode head) {
-		ListNode result=null;
-		
-		while(head!=null){
-			ListNode node=new ListNode(head.val);
-			node.next=result;
-			result=node;
-			head=head.next;
-		}
-		return result;
+		return reverseList(head,null);
+	}
+
+	private ListNode reverseList(ListNode head, ListNode newHead) {
+		if(head==null)return newHead;
+		ListNode node=head.next;
+		head.next=newHead;
+		return reverseList(node,head);
 	}
 }
