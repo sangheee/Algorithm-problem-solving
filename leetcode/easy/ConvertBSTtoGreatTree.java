@@ -5,10 +5,9 @@ public class ConvertBSTtoGreatTree {
 		return root;
 	}
 	public int makeGreatTree(TreeNode root, int val){
-		if(root==null)return 0;
-		if(root.left==null && root.right==null)return root.val=root.val+val;
-
-		root.val+=root.right==null?val:makeGreatTree(root.right,val);	
-		return root.left==null?root.val:makeGreatTree(root.left,root.val);
+		if(root==null)return val;
+		
+		root.val+=makeGreatTree(root.right,val);
+		return makeGreatTree(root.left,root.val);
 	}
 }
