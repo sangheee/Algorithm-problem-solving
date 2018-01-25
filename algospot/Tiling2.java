@@ -3,10 +3,11 @@ import java.util.StringTokenizer;
 
 public class Tiling2 {
 	private static long[]canTile=new long[101];
-	
+	private final static long mod=1000000007;
 	public static void main(String[] args) throws IOException {
-		//InputStreamReader fr = new InputStreamReader(System.in);
+		
 		FileReader fr = new FileReader("input.txt");
+		//InputStreamReader fr = new InputStreamReader(System.in);
 		BufferedReader br = new BufferedReader(fr);
 
 		StringTokenizer tokenizer = new StringTokenizer(br.readLine());
@@ -16,15 +17,14 @@ public class Tiling2 {
 		canTile[1]=1;
 		canTile[2]=2;
 		
-		for(int i=3; i<=100; i++){
-			if(canTile[i]==0)
-				canTile[i]=(canTile[i-2]+canTile[i-1])%((long)1000000007);
-		}
-		
 		for (int i = 0; i < t; i++) {
 			tokenizer = new StringTokenizer(br.readLine());
 			int n = Integer.valueOf(tokenizer.nextToken());
-			System.out.println(canTile[n]);
+			System.out.println(getCanTile(n));
 		}
+	}
+	public static long getCanTile(int n){
+		if(canTile[n]>0)return canTile[n];
+		return (canTile[n]=(getCanTile(n-2)+getCanTile(n-1))%mod);
 	}
 }
