@@ -8,10 +8,8 @@ public class Subsets {
 	}
 
 	private void getSubsets(List<List<Integer>> ret, List<Integer> temp, int[] nums, int i) {
-		if(i==nums.length)return;
 		ret.add(new ArrayList<>(temp));
-		
-		for(int j=i;j<nums.length;j++) {
+		for(int j=i; j<nums.length;j++) {
 			temp.add(nums[j]);
 			getSubsets(ret,temp,nums,j+1);
 			temp.remove(temp.size()-1);
