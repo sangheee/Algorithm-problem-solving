@@ -4,7 +4,7 @@ import org.junit.Test;
 
 public class FindDuplicateNumber {
 
-	public int findDuplicate(int[] nums) {
+	/*public int findDuplicate(int[] nums) {
 		int l=1,r=nums.length-1;
 		
 		while(r-l>1) {
@@ -23,6 +23,19 @@ public class FindDuplicateNumber {
 			if(n==r)j++;
 		}
 		return i>j?l:r;
+	}*/
+	public int findDuplicate(int[] nums) {
+		int p1=0,p2=0;
+		do{
+			p1=nums[p1];
+			p2=nums[nums[p2]];
+		}while(p1!=p2);
+		p1=0;
+		while(p1!=p2) {
+			p1=nums[p1];
+			p2=nums[p2];			
+		}
+		return p1;
 	}
 	@Test
 	public void test() {
