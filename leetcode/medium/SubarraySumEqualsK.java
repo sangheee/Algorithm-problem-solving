@@ -3,7 +3,7 @@ import java.util.*;
 import org.junit.Test;
 
 public class SubarraySumEqualsK {
-	public int subarraySum(int[] nums, int k) {
+	/*public int subarraySum(int[] nums, int k) {
 		int n=nums.length;
 		int[]preSum=new int[n+1];
 		Map<Integer,Integer> appear=new HashMap<>();
@@ -16,6 +16,20 @@ public class SubarraySumEqualsK {
 			int v=appear.getOrDefault(preSum[i], 0);
 			appear.put(preSum[i], v+1);
 		}
+		return res;
+	}*/
+	public int subarraySum(int[] nums, int k) {
+		int res=0;
+		Map<Integer,Integer>preSum=new HashMap<>();
+		preSum.put(0, 1);
+		int sum=0;
+		for(int n:nums) {
+			sum+=n;
+			if(preSum.containsKey(sum-k))res+=preSum.get(sum-k);
+			int v=preSum.getOrDefault(sum, 0);
+			preSum.put(sum, v+1);
+		}
+		
 		return res;
 	}
 	@Test
