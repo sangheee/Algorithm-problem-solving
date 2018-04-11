@@ -19,29 +19,19 @@ public class SortList {
 	*/
 
 	private ListNode sortList(ListNode head) {
-		if (head == null) {return null;}
-		else if(head.next==null)return head;
+		if (head == null||head.next==null)return head;
 
-		ListNode left = head, right = head.next;
-		ListNode leftTail = left, rightTail = right;
+		ListNode slow = head, fast = head,mid=head;
 		
-		boolean flag = true;
-		head=head.next;
-		while (head!= null) {
-			if (flag) {
-				leftTail.next = head.next;
-				leftTail = leftTail.next;
-				flag = false;
-			} else {
-				rightTail.next = head.next;
-				rightTail = leftTail.next;
-				flag = true;
-			}
-			head = head.next;
+		while (fast!=null && fast.next!=null) {
+			mid=slow;
+			slow=slow.next;
+			fast=fast.next.next;
 		}
+		 mid.next=null;
 
-		left = sortList(left);
-		right = sortList(right);
+		ListNode left = sortList(head);
+		ListNode right= sortList(slow);
 		return merge(left, right);
 	}
 
