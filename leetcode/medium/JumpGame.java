@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class JumpGame {
-	public boolean canJump(int[] nums) {
+/*	public boolean canJump(int[] nums) {
 		boolean res=true;
 		int hop=1;
 		for(int i=nums.length-2;i>=0;i--) {
@@ -15,6 +15,16 @@ public class JumpGame {
 			}
 		}
 		return res;
+	}
+	*/
+	public boolean canJump(int[] nums) {
+		int lastPos=nums.length-1;
+		for(int i=nums.length-1;i>=0;i--) {
+			if(i+nums[i]>=lastPos) {
+				lastPos=i;
+			}
+		}
+		return lastPos==0;
 	}
 	@Test
 	public void test() {
