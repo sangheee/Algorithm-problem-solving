@@ -18,21 +18,23 @@ public class LIS {
 			tokenizer = new StringTokenizer(br.readLine());
 			for(int j=0; j<n; j++)r[j]=Integer.valueOf(tokenizer.nextToken());
 					
-			System.out.println(getLIS(n,r));
+			//System.out.println(getLIS(n,r));
+			int[] cache=new int[n+1];
+			int ret=0;
+			for(int j=0;j<n;j++) {
+				ret=Math.max(ret, getLIS(r,cache,j));
+			}
+			System.out.println(ret);
 		}
 	}
 
-	private static int getLIS(int n,int[] r) {
-		int[] LIS=new int[100001];
-		int ret=0;
-		for(int i=0; i<n; i++) {
-			int val=r[i];
-			for(int j=0;j<val;j++) {
-				LIS[val]=Math.max(LIS[val], LIS[j]);
-			}
-			LIS[val]+=1;
-			ret=Math.max(ret, LIS[val]);
+	private static int getLIS(int[] r,int[]cache,int begin) {
+		if(cache[begin]>0)return cache[begin];
+		cache[begin]=1;
+		for(int i=begin+1; i<r.length;i++) {
+			if(r[begin]<r[i])
+				cache[begin]=Math.max(cache[begin], getLIS(r,cache,i)+1);
 		}
-		return ret;
+		return cache[begin];
 	}
 }
