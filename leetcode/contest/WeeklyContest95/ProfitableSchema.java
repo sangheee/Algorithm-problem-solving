@@ -15,7 +15,6 @@ public class ProfitableSchema {
             profitGroup[i][0]=profit[i];
             profitGroup[i][1]=group[i];
         }
-        Arrays.sort(profitGroup, (o1,o2)->{return o1[0]-o2[0];});
 
         long sum = 0;
         long[][] cant = new long[G + 1][P];
