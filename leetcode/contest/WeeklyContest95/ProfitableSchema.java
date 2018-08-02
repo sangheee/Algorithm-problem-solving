@@ -10,12 +10,6 @@ public class ProfitableSchema {
     private static final int mod = (int) (Math.pow(10,9)+7);
 
     public int profitableSchemes(int G, int P, int[] group, int[] profit) {
-        int[][] profitGroup=new int[profit.length][2];
-        for (int i=0;i<profit.length;i++){
-            profitGroup[i][0]=profit[i];
-            profitGroup[i][1]=group[i];
-        }
-
         long sum = 0;
         long[][] cant = new long[G + 1][P];
         cant[0][0] = 1;
@@ -23,24 +17,24 @@ public class ProfitableSchema {
         long[] can = new long[G + 1];
 
         for (int i = profit.length - 1; i >= 0; i--) {
-            for (int j = G - profitGroup[i][1]; j >= 0; j--) {
+            for (int j = G - group[i]; j >= 0; j--) {
                 if (can[j] > 0) {
                     sum += can[j];
                     sum %= mod;
-                    can[j + profitGroup[i][1]]+=can[j];
-                    can[j + profitGroup[i][1]]%=mod;
+                    can[j + group[i]]+=can[j];
+                    can[j + group[i]]%=mod;
                 }
             }
-            for (int j = G - profitGroup[i][1]; j >= 0; j--) {
+            for (int j = G - group[i]; j >= 0; j--) {
                 for (int k = P-1; k >=0; k--) {
-                    if (k+profitGroup[i][0]>=P && cant[j][k] > 0) {
+                    if (k+profit[i]>=P && cant[j][k] > 0) {
                         sum+=cant[j][k];
                         sum%=mod;
-                        can[j+profitGroup[i][1]]+=cant[j][k];
-                        can[j+profitGroup[i][1]]%=mod;
-                    } else if(k+profitGroup[i][0]<P){
-                        cant[j+profitGroup[i][1]][k+profitGroup[i][0]]+=cant[j][k];
-                        cant[j+profitGroup[i][1]][k+profitGroup[i][0]]%=mod;
+                        can[j+group[i]]+=cant[j][k];
+                        can[j+group[i]]%=mod;
+                    } else if(k+profit[i]<P){
+                        cant[j+group[i]][k+profit[i]]+=cant[j][k];
+                        cant[j+group[i]][k+profit[i]]%=mod;
                     }
                 }
             }
