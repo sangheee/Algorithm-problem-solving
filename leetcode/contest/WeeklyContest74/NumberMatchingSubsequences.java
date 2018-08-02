@@ -1,8 +1,11 @@
+package contest;
+
+import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 import java.util.*;
 
-import org.junit.jupiter.api.Test;
 public class NumberMatchingSubsequences {
 	public int numMatchingSubseq(String S, String[] words) {
 		Map<Character,TreeSet<Integer>> appear=new HashMap<>();
