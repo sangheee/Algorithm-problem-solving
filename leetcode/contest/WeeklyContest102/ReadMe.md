@@ -13,7 +13,9 @@
     - output: 4
     - 1에서 시작하여 2번 나무 3개, 3번 나무 1개를 따면 최대 4개를 딸 수 있다.  
     만약 0에서 시작하면 1번 1개, 2번 1개 총 2개밖에 딸 수 없다.   
-   
+
+**solution**
+
 현재까지의 열매 개수와 어떤 나무(2개)의 열매를 땄는 지 기억하며,  
 기억하고 있는 나무 2개 외의 다른 나무를 만나면 그 시점부터 새로이 시작한다.
 (여기서 max=Math.max(sum,max)를 해서 max를 계산, 마지막에 이 max를 리턴한다.)
@@ -52,6 +54,7 @@ O(1) space complexity
     - output은 [4,2,3,1], [2,4,1,3], [4,2,1,3] 도 될 수 있다. 
     즉 짝수 뒤에 홀수이기만 하면 순서는 상관 없다.
    
+**solution**
 ~~~
 for(int l=0,r=A.length-1; l<r;){
     if(A[l]%2!=0){
@@ -77,7 +80,7 @@ O(n) time complexity
                    Minimums are 3, 1, 2, 4, 1, 1, 2, 1, 1, 1.  Sum is 17.
 
 
-solution
+**solution**
 1. stack   
    O(n^2) time complexity  
    O(n) space complexity
